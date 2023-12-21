@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/ProyectoIntegradorSoftware/MicroservicioOrden/src/proto";
+
+// Agrega estas importaciones si aún no las tienes
+import "google/protobuf/empty.proto";
+
+service OrderService {
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+  rpc GetOrder (GetOrderRequest) returns (GetOrderResponse);
+  rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse);
+  rpc DeleteOrder (DeleteOrderRequest) returns (DeleteOrderResponse);
+  rpc ListOrders (ListOrdersRequest) returns (ListOrdersResponse);
+}
+
+message CreateOrderRequest {
+  string nombre = 1;
+  string sku = 2;
+  string precio = 3;
+  string descripcion = 4;
+  repeated ProductoInput productos = 5;
+}
+
+message ProductoInput {
+  string nombre = 1;
+  string precio = 2;
+  string descripcion = 3;
+}
+
+message CreateOrderResponse {
+  string id = 1;
+  string nombre = 2;
+  string sku = 3;
+  string precio = 4;
+  string descripcion = 5;
+  repeated Producto productos = 6;
+}
+
+message GetOrderRequest {
+  string id = 1;
+}
+
+message GetOrderResponse {
+  string nombre = 1;
+  string sku = 2;
+  string precio = 3;
+  string descripcion = 4;
+  string id = 5;
+  repeated Producto productos = 6;
+}
+
+message UpdateOrderRequest {
+  string id = 1;
+  string nombre = 2;
+  string precio = 3;
+  string descripcion = 4;
+  repeated ProductoInput productos = 5;
+}
+
+message UpdateOrderResponse {
+  string nombre = 1;
+  string precio = 2;
+  string descripcion = 3;
+  string id = 4;
+  repeated Producto productos = 5;
+}
+
+message DeleteOrderRequest {
+  string id = 1;
+}
+
+message DeleteOrderResponse {
+  string mensaje = 1;
+}
+
+message ListOrdersRequest {
+}
+
+message ListOrdersResponse {
+  repeated Order orders = 1;
+}
+
+message Order {
+  string nombre = 1;
+  string sku = 2;
+  string precio = 3;
+  string descripcion = 4;
+  string id = 5;
+  repeated Producto productos = 6;
+}
+
+message Producto {
+  string nombre = 1;
+  string precio = 2;
+  string descripcion = 3;
+}
