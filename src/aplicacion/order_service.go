@@ -33,8 +33,8 @@ func (s *OrderService) CreateOrder(ctx context.Context, req *pb.CreateOrderReque
 
 	// Crear la orden con la lista de productos
 	crearOrdenInput := model.CrearOrdenInput{
-		Nombre:      req.GetNombre(),
-		SKU:         req.GetSKU(),
+		Nombre: req.GetNombre(),
+
 		Precio:      req.GetPrecio(),
 		Descripcion: req.GetDescripcion(),
 	}
@@ -46,9 +46,9 @@ func (s *OrderService) CreateOrder(ctx context.Context, req *pb.CreateOrderReque
 
 	// Crear la respuesta protobuf
 	response := &pb.CreateOrderResponse{
-		Id:          u.ID,
-		Nombre:      u.Nombre,
-		SKU:         u.SKU,
+		Id:     u.ID,
+		Nombre: u.Nombre,
+
 		Precio:      u.Precio,
 		Descripcion: u.Descripcion,
 	}
@@ -77,7 +77,6 @@ func (s *OrderService) GetOrder(ctx context.Context, req *pb.GetOrderRequest) (*
 	response := &pb.GetOrderResponse{
 		Id:          u.ID,
 		Nombre:      u.Nombre,
-		SKU:         u.SKU,
 		Precio:      u.Precio,
 		Descripcion: u.Descripcion,
 		Productos:   productos,
@@ -109,7 +108,6 @@ func (s *OrderService) ListOrders(ctx context.Context, req *pb.ListOrdersRequest
 		order := &pb.Order{
 			Id:          u.ID,
 			Nombre:      u.Nombre,
-			SKU:         u.SKU,
 			Precio:      u.Precio,
 			Descripcion: u.Descripcion,
 			Productos:   productos,
@@ -122,7 +120,6 @@ func (s *OrderService) ListOrders(ctx context.Context, req *pb.ListOrdersRequest
 
 func (s *OrderService) UpdateOrder(ctx context.Context, req *pb.UpdateOrderRequest) (*pb.UpdateOrderResponse, error) {
 	nombre := req.GetNombre()
-	SKU := req.GetSKU()
 	precio := req.GetPrecio()
 	descripcion := req.GetDescripcion()
 
@@ -139,8 +136,8 @@ func (s *OrderService) UpdateOrder(ctx context.Context, req *pb.UpdateOrderReque
 
 	// Crear el mensaje de actualización
 	actualizarOrdenInput := &model.ActualizarOrdenInput{
-		Nombre:      &nombre,
-		SKU:         &SKU,
+		Nombre: &nombre,
+
 		Precio:      &precio,
 		Descripcion: &descripcion,
 	}
@@ -153,9 +150,9 @@ func (s *OrderService) UpdateOrder(ctx context.Context, req *pb.UpdateOrderReque
 
 	// Crear la respuesta protobuf
 	response := &pb.UpdateOrderResponse{
-		Id:          u.ID,
-		Nombre:      u.Nombre,
-		SKU:         u.SKU,
+		Id:     u.ID,
+		Nombre: u.Nombre,
+
 		Precio:      u.Precio,
 		Descripcion: u.Descripcion,
 	}
